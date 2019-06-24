@@ -19,8 +19,15 @@ def get_woeid(city: str) -> str:
     return woeid
 
 
+def get_weather_data(woeid: str) -> dict:
+    request_response = requests.get(
+        f"https://www.metaweather.com/api/location/{woeid}")
+    return request_response.json()
+
+
 try:
     city = get_valid_city()
     woeid = get_woeid(city)
+    weather_data = get_weather_data(woeid)
 except requests.ConnectionError:
     print("Could not connect to the server!")
