@@ -25,8 +25,10 @@ def get_woeid(city: str) -> str:
 
 
 def get_weather_data(woeid: str) -> dict:
+    print("Fetching weather forecast...")
     request_response = requests.get(
         f"https://www.metaweather.com/api/location/{woeid}")
+    print("Done.")
     return request_response.json()
 
 
