@@ -45,10 +45,15 @@ def display_weather_info(weather_data: dict) -> None:
               sep="|")
 
 
-try:
-    city = get_valid_city()
-    woeid = get_woeid(city)
-    weather_data = get_weather_data(woeid)
-    display_weather_info(weather_data)
-except requests.ConnectionError:
-    print("Could not connect to the server!")
+def fetch_weather() -> None:
+    try:
+        city = get_valid_city()
+        woeid = get_woeid(city)
+        weather_data = get_weather_data(woeid)
+        display_weather_info(weather_data)
+    except requests.ConnectionError:
+        print("Could not connect to the server!")
+
+
+if __name__ == "__main__":
+    fetch_weather()
