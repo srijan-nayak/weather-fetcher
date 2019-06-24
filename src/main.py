@@ -25,9 +25,30 @@ def get_weather_data(woeid: str) -> dict:
     return request_response.json()
 
 
+def display_weather_info(weather_data: dict) -> None:
+    print("The weather forecast for the next few days:-")
+    print("DATE".center(13, " "),
+          "STATE".center(13, " "),
+          "TEMPERATURE (°C)".center(18, " "),
+          "HUMIDITY (%)".center(14, " "),
+          sep="|")
+    print("=" * 62)
+    for forecast in weather_data["consolidated_weather"]:
+        state = forecast["weather_state_name"]
+        date = forecast["applicable_date"]
+        temp = "%.2f" % forecast["the_temp"]
+        humidity = str(forecast["humidity"])
+        print(date.center(13, " "),
+              state.center(13, " "),
+              temp.center(18, " "),
+              humidity.center(14, " "),
+              sep="|")
+
+
 try:
     city = get_valid_city()
     woeid = get_woeid(city)
     weather_data = get_weather_data(woeid)
+    display_weather_info(weather_data)
 except requests.ConnectionError:
     print("Could not connect to the server!")
