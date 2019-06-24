@@ -53,6 +53,9 @@ def fetch_weather() -> None:
         display_weather_info(weather_data)
     except requests.ConnectionError:
         print("Could not connect to the server!")
+    choice = input("Fetch weather info for another city? [Y/n] ")
+    if choice.lower() == "y":
+        fetch_weather()
 
 
 if __name__ == "__main__":
