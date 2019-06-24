@@ -4,7 +4,7 @@
     {
       "label": "run",
       "type": "shell",
-      "command": "python",
+      "command": "python3",
       "args": ["src/main.py"],
       "group": {
         "kind": "build",
