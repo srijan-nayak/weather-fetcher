@@ -15,10 +15,12 @@ def get_valid_city() -> str:
 
 
 def get_woeid(city: str) -> str:
+    print(f"Getting Where On Earth ID for {city}...")
     request_response = requests.get(
         f"https://www.metaweather.com/api/location/search/?query={city}")
     location_data = request_response.json()
     woeid = location_data[0]["woeid"]
+    print("Done.")
     return woeid
 
 
