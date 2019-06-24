@@ -3,11 +3,14 @@ import requests
 
 def get_valid_city() -> str:
     city = input("Enter city name: ")
+    print("Looking for matching city on the metaweather...")
     request_response = requests.get(
         f"https://www.metaweather.com/api/location/search/?query={city}")
     if request_response.text == "[]":
         print("City not found!")
         city = get_valid_city()
+    else:
+        print("Done.")
     return city
 
 
